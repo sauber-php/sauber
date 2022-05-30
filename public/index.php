@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-use Sauber\Http\HttpKernel;
-use Sauber\Http\Request;
+use Sauber\Framework\Application;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$router = require __DIR__ . '/../config/http-router.php';
+$container = require __DIR__ . '/../config/container.php';
 
-HttpKernel::using(
-    requestHandler: $router,
-)->dispatch(
-    request: Request::capture(),
+$app = Application::boot(
+    container: $container,
 );
+
+$app->get(
+    path: '/',
+    handler: App\Http\Handlers\RootHandler::class,
+)->setName('root');
+
+$app->run();
