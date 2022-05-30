@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Handlers;
 
@@ -15,7 +15,7 @@ final class RootHandler
     public function __invoke(ServerRequestInterface $request): array
     {
         return [
-            'message' => 'Root Handler.'
+            'message' => 'Root Handler.',
         ];
     }
 }
